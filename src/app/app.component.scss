@@ -1,0 +1,27 @@
+.container {
+    height:100%;
+}
+
+.layout {
+    height: calc(100% - 154px);
+    margin-top: 20px;
+}
+
+.projectTitle {
+    text-align: center;
+    padding: 20px;
+    font-size: 24px;
+}
+
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    color: black;
+    background-color: #f8f9fa;
+}
+
+.customMsg {
+    padding-top: 20px;
+}
+
+.hidden {
+    display:none;
+}

@@ -1,0 +1,112 @@
+
+<div class="container">
+  <p class="projectTitle">Waste Management Using Block Chain</p>
+  <ul class="nav nav-tabs">
+    <li class="nav-item" (click)="tabClicked('collector')"><a class="nav-link" href="#">Collector</a></li>
+    <li class="nav-item" (click)="tabClicked('manure')"><a class="nav-link" href="#">Manure</a></li>
+    <li class="nav-item" (click)="tabClicked('farmer')"><a class="nav-link" href="#">Farmer</a></li>
+    <li class="nav-item" (click)="tabClicked('user')"><a class="nav-link" href="#">User</a></li>
+    <li class="nav-item" (click)="tabClicked('trade')"><a class="nav-link" href="#">Trade</a></li>
+  </ul>
+
+  <div *ngIf="displayCollector" id="collector-container" class="layout">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Owner Id</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Action</th>
+                <th id="total-manure" [ngClass]="'hidden'" scope="col">Total Manure</th>
+             </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let collector of data;let i=index;">
+              <th scope="row">{{i+1}}</th>
+              <td>{{collector.ownerId}}</td>
+              <td>{{collector.firstName}}</td>
+              <td>{{collector.lastName}}</td>
+              <td><button type="button" class="btn btn-info" (click)="computeTotalManure(collector.ownerId)">Total Manure</button></td>
+              <td id={{collector.ownerId}} [ngClass]="'hidden'"></td>
+            </tr>
+        </tbody>
+        </table>
+  </div>
+  <div *ngIf="displayManure" id="manure-container" class="layout">
+        <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">manureId</th>
+                  <th scope="col">Owner</th>
+                  <th scope="col">Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let manure of data;let i=index;">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{manure.manureTimeOwner}}</td>
+                  <td>{{manure.owner}}</td>
+                  <td>{{manure.quantity}}</td>
+                </tr>
+              </tbody>
+        </table>
+  </div>
+  <div *ngIf="displayFarmer" id="farmer-container" class="layout">
+         <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Owner Id</th>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">Action</th>
+                  <th id="total-manure" [ngClass]="'hidden'" scope="col">Total Manure</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let farmer of data;let i=index;">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{farmer.ownerId}}</td>
+                  <td>{{farmer.firstName}}</td>
+                  <td>{{farmer.lastName}}</td>
+                  <td><button type="button" class="btn btn-info" (click)="computeTotalManure(farmer.ownerId)">Total Manure</button></td>
+                  <td id={{farmer.ownerId}} [ngClass]="'hidden'"></td>
+                </tr>
+              </tbody>
+        </table>
+  </div>
+  <div *ngIf="displayUser" id="user-container" class="layout">
+      <form>
+          <div class="form-group">
+              <label for="owner-id">Owner Id</label>
+              <input type="text" class="form-control" id="owner-id"  name="owner-id" placeholder="Enter owner Id" [(ngModel)]="ownerId">
+          </div>
+          <div class="form-group">
+              <label for="manure-id">Manure Id</label>
+              <input type="text" class="form-control" id="manure-id"  name="manure-id" placeholder="Enter manure Id" [(ngModel)]="manureId">
+          </div>
+          <div class="form-group">
+              <label for="quantity">Quantity</label>
+              <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Enter Quantity" [(ngModel)]="quantity">
+          </div>
+          <button type="submit" class="btn btn-info" (click)="submitManureDetails()">Submit</button>
+      </form>
+      <p class="customMsg" [hidden]=!showMsg>{{msg}}</p>
+  </div>
+  <div *ngIf="displayTrade" id="trade-container" class="layout">
+      <form>
+          <div class="form-group">
+              <label for="manure-trade-id">Manure Id</label>
+              <input type="text" class="form-control" id="manure-trade-id" name="manure-trade-id" placeholder="Enter manure Id" [(ngModel)]="manureTradeId">
+          </div>
+          <div class="form-group">
+              <label for="new-owner-id">New Owner</label>
+              <input type="text" class="form-control" id="new-owner-id" name="new-owner-id" placeholder="Enter the New Owner Id" [(ngModel)]="newOwner">
+          </div>
+          <button type="submit" class="btn btn-info" (click)="submitTradeDetails()">Submit</button>
+      </form>
+      <p class="customMsg" [hidden]=!showMsg>{{msg}}</p>
+  </div>   
+</div>
